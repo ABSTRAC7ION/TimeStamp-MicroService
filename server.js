@@ -4,6 +4,7 @@
 // init project
 var express = require('express');
 var app = express();
+const PORT = process.env.PORT || 5000;
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
@@ -28,8 +29,11 @@ app.get("/api", (req, res) => {
   var date = a.getDate();
   var day = days[a.getDay()];
   var hour = a.getHours() - 2;
+  hour = hour < 10? '0' + hour: hour;
   var min = a.getMinutes();
+  min = min < 10? '0' + min: min;
   var sec = a.getSeconds();
+  sec = sec < 10? '0' + sec: sec;
   
   var time = day + ', ' + date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec + " GMT";
   
@@ -54,8 +58,11 @@ app.get("/api/:date?", (req, res) => {
     var date = a.getDate();
     var day = days[a.getDay()];
     var hour = a.getHours() - 2;
+    hour = hour < 10? '0' + hour: hour;
     var min = a.getMinutes();
+    min = min < 10? '0' + min: min;
     var sec = a.getSeconds();
+    sec = sec < 10? '0' + sec: sec;
     var time = day + ', ' + date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec + " GMT";
   return time;
   }
@@ -85,6 +92,4 @@ app.use((req, res) => {
 })
 
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+var listener = app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
