@@ -23,7 +23,7 @@ app.get("/", function (req, res) {
 app.get("/api", (req, res) => {
   let a = new Date();
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var days = ['Sun','Mon','Tue','Wed','Thurs','Fri','Sat']
+  var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
   var year = a.getFullYear();
   var month = months[a.getMonth()];
   var date = a.getDate();
@@ -42,17 +42,13 @@ app.get("/api", (req, res) => {
   res.send({unix: unixTime * 1000, utc: time})
 })
 
-app.get("/api/1451001600000", (req, res) => {
-  res.send({ unix: 1451001600000, utc: "Fri, 25 Dec 2015 00:00:00 GMT" })
-})
-
 app.get("/api/:date?", (req, res) => {
   let date = req.params.date;
   
   function timeConverter(UNIX_timestamp){
     var a = new Date(UNIX_timestamp * 1000);
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var days = ['Sun','Mon','Tue','Wed','Thurs','Fri','Sat']
+    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
     var year = a.getFullYear();
     var month = months[a.getMonth()];
     var date = a.getDate();
