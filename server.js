@@ -64,7 +64,8 @@ app.get("/api/:date?", (req, res) => {
   }
   if (date.length<=13){
     if(/[-]/g.test(date) === true){
-      let udate = Math.floor(new Date(date).getTime() / 1000);
+      let date1 = new Date(date) 
+      let udate = Math.floor(date1.getTime() / 1000);
       res.send({unix: udate * 1000, utc: timeConverter(udate)});
     } else {
       if(date.length == 13){
