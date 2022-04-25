@@ -57,7 +57,7 @@ app.get("/api/:date?", (req, res) => {
     var month = months[a.getMonth()];
     var date = a.getDate();
     var day = days[a.getDay()];
-    var hour = a.getHours() - 2;
+    var hour = a.getHours() != 0? a.getHours() - 2: a.getHours(); 
     hour = hour < 10? '0' + hour: hour;
     var min = a.getMinutes();
     min = min < 10? '0' + min: min;
@@ -66,7 +66,7 @@ app.get("/api/:date?", (req, res) => {
     var time = day + ', ' + date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec + " GMT";
   return time;
   }
-  if (date.length===10 || date.length===13){
+  if (date.length<=13){
     if(/[-]/g.test(date) === true){
       let udate = Math.floor(new Date(date).getTime() / 1000);
       res.send({unix: udate * 1000, utc: timeConverter(udate)});
