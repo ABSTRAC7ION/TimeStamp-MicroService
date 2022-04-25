@@ -28,7 +28,7 @@ app.get("/api", (req, res) => {
   var month = months[a.getMonth()];
   var date = a.getDate();
   var day = days[a.getDay()];
-  var hour = a.getHours() - 2;
+  var hour = a.getHours() != 0? a.getHours() - 2: a.getHours(); 
   hour = hour < 10? '0' + hour: hour;
   var min = a.getMinutes();
   min = min < 10? '0' + min: min;
